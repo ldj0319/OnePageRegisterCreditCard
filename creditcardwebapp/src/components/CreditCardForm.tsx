@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import NumberFormat from 'react-number-format'
-import Submit from '../actions/Submit';
+import Submit from './Submit';
 import './CreditCardForm.css';
 
 const CreditCardForm = () => {
@@ -19,28 +19,36 @@ const CreditCardForm = () => {
         switch (stateName) {
             case fieldName.CreditCardNumber:
                 setCreditCardNumber(value);
-                IsInputFilled(value, CVC, expiryDate);
+                Validate(value, CVC, expiryDate);
                 break;
             case fieldName.CVC:
                 setCVC(value);
-                IsInputFilled(creditCardNumber, value, expiryDate);
+                Validate(creditCardNumber, value, expiryDate);
                 break;
             case fieldName.ExpiryDate:
                 setExpiryDate(value);
-                IsInputFilled(creditCardNumber, CVC, value);
+                Validate(creditCardNumber, CVC, value);
                 break;
             default:
                 break;
         }
     }
 
-    const IsInputFilled = (creditCardNumber: string, CVC:string, expiryDate: string) => {
-        if (creditCardNumber !== "" && CVC !== "" && expiryDate !== "" ) {
+    const Validate = (creditCardNumber: string, CVC:string, expiryDate: string) => {
+        if(ValidateNumber(creditCardNumber) && ValidateNumber(CVC) && ValidateNumber(expiryDate)){
             setButtonClick(true);
-        }
-        else {
+        }  
+        else {     
             setButtonClick(false);
-        }
+        }  
+    }
+
+    const ValidateNumber = (number: string) => {
+        number = number.replaceAll(" ", "");
+        number = number.replaceAll("/", "");
+        let num = Number(number);
+    
+        return (!isNaN(num) && number !== "");
     }
     
     return (

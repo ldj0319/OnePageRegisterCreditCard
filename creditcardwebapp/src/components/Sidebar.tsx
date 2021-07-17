@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
-import * as AiIcon from 'react-icons/ai'
+import * as IoIcon from 'react-icons/io'
+import * as FaIcon from 'react-icons/fa'
 import './Sidebar.css';
 
 const Sidebar = () => {
@@ -10,7 +11,7 @@ const Sidebar = () => {
         <div>
             <div className="Nav">
                 <div className="NavIcon">
-                    <AiIcon.AiOutlineMenu onClick={showSidebar}/>
+                    <FaIcon.FaHamburger color="yellow" size="30px" onClick={showSidebar}/>
                 </div>
                 <div className="SidebarText">
                     Register card form
@@ -19,7 +20,7 @@ const Sidebar = () => {
             {sidebar ? <nav className="SidebarNav">
                 <div className="SidebarWrap">
                     <div className="NavIcon">
-                        <AiIcon.AiOutlineBackward onClick={showSidebar}/>
+                        <IoIcon.IoMdArrowRoundBack color="yellow" size="30px" onClick={showSidebar}/>
                     </div>
                 </div>
                 <div className="SidebarText">
