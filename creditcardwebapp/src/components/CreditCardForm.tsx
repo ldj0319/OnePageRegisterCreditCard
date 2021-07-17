@@ -26,28 +26,38 @@ const CreditCardForm = () => {
 
     return (
         <div className="CreditCardForm">
-            <div className="CreditCardNumberField">
-                <input 
-                    className="CreditCardNumberInput"
-                    onChange={ event => setCreditCardNumber(Number(event.target.value)) } 
-                    placeholder="Credit Card Number" 
-                    type="number"/>
+            <div className="row">
+                <div className="CreditCardNumberField">
+                    <input 
+                        className="CreditCardNumberInput"
+                        onChange={ event => setCreditCardNumber(Number(event.target.value)) } 
+                        placeholder="Credit Card Number" 
+                        type="number"/>
+                </div>
             </div>
-            <div className="CVCField">
-                <input 
-                    className="CVCInput"
-                    onChange={ event => setCVC(Number(event.target.value)) } 
-                    placeholder="CVC" 
-                    type="number"/>
+            <div className="row">
+                <div className="col left">
+                    <div className="CVCField">
+                        <input 
+                            className="CVCInput"
+                            onChange={ event => setCVC(Number(event.target.value)) } 
+                            placeholder="CVC" 
+                            type="number"/>
+                    </div>
+                </div>
+                <div className="col right">    
+                    <div className="ExpiryDateField">
+                        <DatePicker className="ExpiryDateInput" 
+                            onChange={ setExpiryDate } 
+                            value={ expiryDate } />
+                    </div>
+                </div>
             </div>
-            <div className="ExpiryDateField">
-                <DatePicker className="ExpiryDateInput" 
-                    onChange={ setExpiryDate } 
-                    value={ expiryDate } />
+            <div className="Submit">
+                <button onClick={ Submit }>
+                    Submit
+                </button>
             </div>
-            <button onClick={ Submit }>
-                Submit
-            </button>
         </div>
     );
 };
