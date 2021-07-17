@@ -1,13 +1,14 @@
-import React, {useState} from 'react';
+import React from 'react';
 import './Submit.css';
 
 interface Props {
+    buttonClick: boolean;
     creditCardNumber: string;
     CVC: string;
     expiryDate: string;
 }
 
-const Submit: React.FC<Props> = ({ creditCardNumber, CVC, expiryDate}) => {
+const Submit: React.FC<Props> = ({ buttonClick, creditCardNumber, CVC, expiryDate}) => {
     const Validate = (creditCardNumber: string, CVC:string, expiryDate: string) => {
         if(ValidateNumber(creditCardNumber)){
             console.log("Credit Card Number Failed", creditCardNumber);
@@ -28,7 +29,7 @@ const Submit: React.FC<Props> = ({ creditCardNumber, CVC, expiryDate}) => {
 
     return (
         <div className="Submit">
-            <button onClick={ () => Validate(creditCardNumber, CVC, expiryDate) }>
+            <button disabled={ !buttonClick } onClick={ () => Validate(creditCardNumber, CVC, expiryDate) }>
                 Submit
             </button>
         </div>
@@ -39,7 +40,7 @@ const ValidateNumber = (number: string) => {
     number = number.replaceAll(/ /g, "");
     let num = Number(number);
 
-    return (isNaN(num) || num == 0);
+    return (isNaN(num) || num === 0);
 }
 
 const ValidateDate = (date: string) => {
