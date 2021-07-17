@@ -6,10 +6,9 @@ const CreditCardForm = () => {
     const [creditCardNumber, setCreditCardNumber] = useState(0);
     const [CVC, setCVC] = useState(0);
     const [expiryDate, setExpiryDate] = useState(new Date());
-    const [valid, setValid] = useState(false);
 
     const Submit = () => {
-        if (valid) {
+        if (Validate()) {
             console.log("Credit Card Number: ", creditCardNumber);
             console.log("CVC Number: ", CVC);
             console.log("Expiry Date: ", expiryDate);
@@ -20,7 +19,10 @@ const CreditCardForm = () => {
 
     const Validate = () => {
         if (creditCardNumber > 0 && CVC > 0 && expiryDate != null) {
-            setValid(true);
+            return true;
+        }
+        else {
+            return false
         }
     }
 
