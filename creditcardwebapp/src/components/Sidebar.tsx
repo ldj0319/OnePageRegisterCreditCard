@@ -3,16 +3,29 @@ import * as AiIcon from 'react-icons/ai'
 import './Sidebar.css';
 
 const Sidebar = () => {
+    const [sidebar, setSidebar] = useState(false)
+    const showSidebar = () => setSidebar(!sidebar)
+
     return (
         <div>
             <div className="Nav">
                 <div className="NavIcon">
-                    <AiIcon.AiOutlineMenu/>
+                    <AiIcon.AiOutlineMenu onClick={showSidebar}/>
                 </div>
                 <div className="SidebarText">
                     Register card form
                 </div>
-            </div>       
+            </div>
+            {sidebar ? <nav className="SidebarNav">
+                <div className="SidebarWrap">
+                    <div className="NavIcon">
+                        <AiIcon.AiOutlineBackward onClick={showSidebar}/>
+                    </div>
+                </div>
+                <div className="SidebarText">
+                    This is menu content
+                </div>
+            </nav> : ''}     
         </div>
     )
 };
