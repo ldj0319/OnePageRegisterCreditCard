@@ -1,65 +1,48 @@
 import React, {useState} from 'react';
-import DatePicker from 'react-date-picker';
+import NumberFormat from 'react-number-format'
+import Submit from '../actions/Submit';
 import './CreditCardForm.css';
 
 const CreditCardForm = () => {
-    const [creditCardNumber, setCreditCardNumber] = useState(0);
-    const [CVC, setCVC] = useState(0);
-    const [expiryDate, setExpiryDate] = useState(new Date());
-
-    const Submit = () => {
-        if (Validate()) {
-            console.log("Credit Card Number: ", creditCardNumber);
-            console.log("CVC Number: ", CVC);
-            console.log("Expiry Date: ", expiryDate);
-        } else {
-            console.log("Failed");
-        }
-    }
-
-    const Validate = () => {
-        if (creditCardNumber > 0 && CVC > 0 && expiryDate != null) {
-            return true;
-        }
-        else {
-            return false
-        }
-    }
-
+    const [creditCardNumber, setCreditCardNumber] = useState("");
+    const [CVC, setCVC] = useState("");
+    const [expiryDate, setExpiryDate] = useState("");
+    
     return (
         <div className="CreditCardForm">
             <div className="row">
                 <div className="CreditCardNumberField">
-                    <input 
+                    <NumberFormat 
                         className="CreditCardNumberInput"
-                        onChange={ event => setCreditCardNumber(Number(event.target.value)) } 
+                        onChange={ event => setCreditCardNumber(event.target.value) } 
                         placeholder="Credit Card Number" 
-                        type="number"/>
+                        format="#### #### #### ####" 
+                        mask="#"/>
                 </div>
             </div>
             <div className="row">
                 <div className="col left">
                     <div className="CVCField">
-                        <input 
+                        <NumberFormat 
                             className="CVCInput"
-                            onChange={ event => setCVC(Number(event.target.value)) } 
+                            onChange={ event => setCVC(event.target.value) } 
                             placeholder="CVC" 
-                            type="number"/>
+                            format="###" 
+                            mask="#"/>
                     </div>
                 </div>
-                <div className="col right">    
+                <div className="col right">
                     <div className="ExpiryDateField">
-                        <DatePicker className="ExpiryDateInput" 
-                            onChange={ setExpiryDate } 
-                            value={ expiryDate } />
+                        <NumberFormat 
+                            className="ExpiryDateInput"
+                            onChange={ event => setExpiryDate(event.target.value) } 
+                            placeholder="Expiry Date" 
+                            format="##/##" 
+                            mask={['M', 'M', 'Y', 'Y']}/>
                     </div>
                 </div>
             </div>
-            <div className="Submit">
-                <button onClick={ Submit }>
-                    Submit
-                </button>
-            </div>
+            <Submit creditCardNumber={ creditCardNumber } CVC={ CVC } expiryDate={ expiryDate }/>
         </div>
     );
 };
