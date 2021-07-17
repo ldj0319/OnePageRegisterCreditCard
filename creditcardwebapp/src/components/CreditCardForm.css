@@ -1,7 +1,22 @@
+input {
+    margin-left: auto;
+    margin-right: auto;
+    width:100%;
+    height: 30px;
+    text-align: center;
+}
+
 .CreditCardForm {
     position: absolute;
     width: 100%;
     bottom: 10%;
+}
+
+.CreditCardNumberField{
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: auto;
+    margin-bottom: 20px;
 }
 
 .CVCField {
@@ -37,7 +52,7 @@
 .left {
     width: 67%;
 }
-
+  
 .right {
     width: 33%;
 }
