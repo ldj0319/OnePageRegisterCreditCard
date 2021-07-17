@@ -11,13 +11,16 @@ interface Props {
 const Submit: React.FC<Props> = ({ buttonClick, creditCardNumber, CVC, expiryDate}) => {
     const Validate = (creditCardNumber: string, CVC:string, expiryDate: string) => {
         if(ValidateNumber(creditCardNumber)){
-            console.log("Credit Card Number Failed", creditCardNumber);
+            alert("Please Enter Valid Credit Card Number.\r\n" +
+            "The Credit Card Number should be 16 digits.");
         }  
         else if (ValidateNumber(CVC)) {
-            console.log("CVC Failed", CVC);
+            alert("Please Enter Valid CVC Number.\r\n" +
+            "The CVC Number should be 3 digits.");
         }
         else if (!ValidateDate(expiryDate)) {
-            console.log("Expiry Date Failed", expiryDate);
+            alert("Please Enter Valid Expiry Date.\r\n" +
+            "The format MM/YY should be used.");
         }
         else {     
             console.log("Succeed");
@@ -29,7 +32,7 @@ const Submit: React.FC<Props> = ({ buttonClick, creditCardNumber, CVC, expiryDat
 
     return (
         <div className="Submit">
-            <button disabled={ !buttonClick } onClick={ () => Validate(creditCardNumber, CVC, expiryDate) }>
+            <button className="SubmitButton" disabled={ !buttonClick } onClick={ () => Validate(creditCardNumber, CVC, expiryDate) }>
                 Submit
             </button>
         </div>
