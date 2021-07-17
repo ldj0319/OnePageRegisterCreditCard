@@ -44,8 +44,8 @@ const CreditCardForm = () => {
     }
 
     const ValidateNumber = (number: string) => {
-        number = number.replaceAll(" ", "");
-        number = number.replaceAll("/", "");
+        number = number.replace(/ /g, "");
+        number = number.replace(/\//g, "");
         let num = Number(number);
     
         return (!isNaN(num) && number !== "");
